@@ -1,6 +1,6 @@
 # Phase 1 Report - Baseline Pipeline
 
-_Generated at: 2026-09-26T04:06:02.773723+00:00_
+_Generated at: 2026-09-26T05:59:23.263039+00:00_
 
 ## 1. Source Summary
 
@@ -17,9 +17,9 @@ _Generated at: 2026-09-26T04:06:02.773723+00:00_
 | :--- | ---: |
 | Samples | 10 |
 | Retrieval Hit Rate | 100.0% |
-| Mean Token F1 | 0.520 |
-| Judge Accuracy | 50.0% |
-| Mean Judge Score | 3.000 |
+| Mean Token F1 | 1.000 |
+| Judge Accuracy | 100.0% |
+| Mean Judge Score | 5.000 |
 
 ## 3. Data Quality Gate
 

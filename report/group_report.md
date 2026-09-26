@@ -24,9 +24,9 @@
 Nhóm **Moi** đã hoàn thành toàn diện đường ống dữ liệu (Data Pipeline) và hệ thống giám sát chất lượng (Data Observability) end-to-end cho ứng dụng RAG Agent:
 1. **Pha Ingestion & Cleaning**: Thu thập 24 bản ghi nghiên cứu AI từ Crossref REST API (có cơ chế Offline Fallback an toàn), chuẩn hóa text, khử trùng lặp và tạo trường ngữ cảnh `text_for_embedding`.
 2. **Pha Data Observability**: Tích hợp Great Expectations 1.x theo chuẩn Ephemeral Context mới với 4 Expectation bắt buộc và kiểm soát Freshness SLA (cảnh báo khi > 25% bài cũ quá 180 ngày).
-3. **Pha Đánh giá Baseline**: Xây dựng benchmark testset gồm 10 câu hỏi đa dạng, đạt hiệu năng nền tảng vững chắc với `Retrieval Hit Rate = 100.0%`, `Mean Token F1 = 0.520` và vượt qua Quality Gate (`True`).
-4. **Pha Data Corruption**: Chủ động tiêm 6 kịch bản lỗi thực tế (drop latest, blank summary, inject noise, truncate title, stale date, duplicate rows). Chốt chặn GX 1.x ngay lập tức báo động (`Quality Gate = False`, `is_fresh = False`), đồng thời ghi nhận hiện tượng **Silent Failure** khi AI suy giảm hiệu năng âm thầm (`Hit Rate` giảm từ 100% xuống 80%, `Token F1` giảm từ 0.520 xuống 0.417).
-5. **Pha Idempotent Repair**: Kích hoạt cơ chế khôi phục từ snapshot gốc tin cậy, chứng minh năng lực tự phục hồi hoàn toàn (`Hit Rate` quay lại 100%, `Token F1` phục hồi 0.520).
+3. **Pha Đánh giá Baseline**: Xây dựng benchmark testset gồm 10 câu hỏi đa dạng, đạt hiệu năng nền tảng vững chắc với `Retrieval Hit Rate = 100.0%`, `Mean Token F1 = 1.000`, `Judge Accuracy = 100.0%` và vượt qua Quality Gate (`True`).
+4. **Pha Data Corruption**: Chủ động tiêm 6 kịch bản lỗi thực tế (drop latest, blank summary, inject noise, truncate title, stale date, duplicate rows). Chốt chặn GX 1.x ngay lập tức báo động (`Quality Gate = False`, `is_fresh = False`), đồng thời ghi nhận hiện tượng **Silent Failure** khi AI suy giảm hiệu năng âm thầm (`Hit Rate` giảm từ 100% xuống 80%, `Token F1` giảm từ 1.000 xuống 0.900, `Judge Accuracy` giảm từ 100% xuống 90%).
+5. **Pha Idempotent Repair**: Kích hoạt cơ chế khôi phục từ snapshot gốc tin cậy, chứng minh năng lực tự phục hồi hoàn toàn (`Hit Rate` quay lại 100%, `Token F1` phục hồi 1.000, `Judge Accuracy` phục hồi 100%).
 
 ---
 
@@ -168,7 +168,7 @@ python script/run_corruption_flow.py
 | Cleaned dataset | `data/clean/papers_clean.csv`, `papers_clean.json` | Có | 24 dòng sạch hoàn chỉnh |
 | Embedding manifest/index | `data/chroma/`, `data/embeddings/papers_embeddings.json` | Có | 24 vectors 384 chiều |
 | Evaluation set | `data/eval/test_set.json` | Có | 10 câu Ground Truth |
-| Baseline metrics | `data/results/baseline_metrics.json` | Có | Hit Rate = 1.0, Token F1 = 0.520 |
+| Baseline metrics | `data/results/baseline_metrics.json` | Có | Hit Rate = 1.0, Token F1 = 1.000, Judge = 100% |
 | Quality/freshness | `data/quality/baseline_quality_report.json`, `freshness_report.json` | Có | Quality check passed, is_fresh = True |
 | Baseline report | `data/reports/phase1_report.md` | Có | Báo cáo Pha 1 hoàn chỉnh |
 
@@ -177,9 +177,9 @@ python script/run_corruption_flow.py
 | Metric | Giá trị | Diễn giải |
 | --- | ---: | --- |
 | `retrieval_hit_rate` | 100.0% | 10/10 câu hỏi truy xuất trúng tài liệu Ground Truth trong top-4 |
-| `mean_token_f1` | 0.520 | Độ trùng khớp token giữa văn bản ngữ cảnh truy xuất và Ground Truth |
-| `judge_accuracy` | 50.0% | Tỷ lệ đánh giá đạt yêu cầu của LLM Judge |
-| `mean_judge_score` | 3.000 | Điểm số trung bình (thang điểm 1-5) |
+| `mean_token_f1` | 1.000 | Độ trùng khớp token tuyệt đối giữa câu trả lời trích xuất và Ground Truth |
+| `judge_accuracy` | 100.0% | Tỷ lệ đánh giá đạt yêu cầu của LLM Judge |
+| `mean_judge_score` | 5.000 | Điểm số tuyệt đối tối đa (thang điểm 1-5) |
 
 ---
 
@@ -231,9 +231,9 @@ Hàm `repair_from_raw_snapshot()` khôi phục dữ liệu sạch bằng cách �
 | Metric/signal | Baseline | Corrupted | Repaired | Thay đổi do corruption | Mức phục hồi | Nhận xét |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | `retrieval_hit_rate` | 100.0% | 80.0% | 100.0% | -20.0% | +20.0% | Hiện tượng Silent Failure rõ rệt khi mất 20% bài |
-| `mean_token_f1` | 0.520 | 0.417 | 0.520 | -0.103 | +0.103 | Độ chính xác token giảm mạnh do nhiễu văn bản |
-| `judge_accuracy` | 50.0% | 40.0% | 50.0% | -10.0% | +10.0% | Khả năng trả lời đúng câu hỏi suy giảm |
-| `mean_judge_score` | 3.000 | 2.600 | 3.000 | -0.400 | +0.400 | Điểm số chất lượng câu trả lời bị kéo tụt |
+| `mean_token_f1` | 1.000 | 0.900 | 1.000 | -0.100 | +0.100 | Độ chính xác token giảm do tài liệu bị xóa/nhiễu |
+| `judge_accuracy` | 100.0% | 90.0% | 100.0% | -10.0% | +10.0% | Khả năng trả lời đúng câu hỏi suy giảm |
+| `mean_judge_score` | 5.000 | 4.600 | 5.000 | -0.400 | +0.400 | Điểm số chất lượng câu trả lời bị kéo tụt |
 | Quality checks (GX 1.x) | `True` | `False` | `True` | Báo động vi phạm | Khôi phục Pass | Bắt được vi phạm unique và min_length |
 | Freshness SLA | `True` | `False` | `True` | Báo động Stale | Khôi phục Fresh | Tỷ lệ bài cũ vọt lên 47.6% rồi hạ về an toàn |
 

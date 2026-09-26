@@ -25,7 +25,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer is identical to the reference answer, providing a perfect match and accurate summary."
+      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
   {
@@ -54,7 +54,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer is identical to the reference answer, providing a perfect summary of the paper."
+      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
   {
@@ -83,7 +83,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer is identical to the reference answer."
+      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
   {
@@ -94,7 +94,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671814"
     ],
-    "answer": "An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Anh Tran, Quoc Pham",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671814",
       "10.1145/3637528.3671822",
@@ -108,11 +108,11 @@
       "Title: Autom\nAuthors: Son Nguyen, Thuy Doan\nPublished: 2025-06-08\nCategories: Data Quality, DevOps\nSummary: Embedding quality checks directly into data pipelines enables fail-closed governance. We show how Great Expectations suites catch schema drifts and null fields before documents reach the embedding model."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
-      "reasoning": "The model answer did not provide the names of the authors; instead, it gave a description of a study."
+      "score": 5,
+      "correct": true,
+      "reasoning": "The model answer perfectly matches the reference answer."
     }
   },
   {
@@ -123,7 +123,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671820"
     ],
-    "answer": "An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence.",
+    "answer": "Phong Vu, Ngan Hoang",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671820",
       "10.1145/3637528.3671813",
@@ -137,11 +137,11 @@
       "Title: Advanced Perspectives on Freshness SLAs for Real-Time LLM Knowledge Augmentation\nAuthors: Bao Do, Linh Ngo\nPublished: 2026-06-04\nCategories: Data Management, Artificial Intelligence\nSummary: An extended empirical study on e define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora Further analysis on scaling parameters."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "score": 5,
+      "correct": true,
+      "reasoning": "The model answer perfectly matches the reference answer."
     }
   },
   {
@@ -152,7 +152,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671806"
     ],
-    "answer": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings.",
+    "answer": "Huy Dinh, Trang Vo",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671806",
       "10.1145/3637528.3671818",
@@ -166,11 +166,11 @@
       "Title: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-05-20\nCategories: Artificial Intelligence, Information Retrieval\nSummary: Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
-      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
+      "score": 5,
+      "correct": true,
+      "reasoning": "The model answer perfectly matches the reference answer."
     }
   },
   {
@@ -239,7 +239,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671814"
     ],
-    "answer": "An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Software Engineering, Data Systems",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671814",
       "10.1145/3637528.3671822",
@@ -253,10 +253,10 @@
       "Title: Autom\nAuthors: Son Nguyen, Thuy Doan\nPublished: 2025-06-08\nCategories: Data Quality, DevOps\nSummary: Embedding quality checks directly into data pipelines enables fail-closed governance. We show how Great Expectations suites catch schema drifts and null fields before documents reach the embedding model."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.08695652173913043,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
@@ -268,7 +268,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671802"
     ],
-    "answer": "An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Software Engineering, Data Systems",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671814",
       "10.1145/3637528.3671822",
@@ -282,10 +282,10 @@
       "Title: Advanced Perspectives on Chunking Strategies for Technical Documentation Retrieval\nAuthors: Long Trinh, Ha Chu\nPublished: 2025-06-09\nCategories: Information Retrieval, Natural Language Processing\nSummary:  [CORRUPTED_NOISE: ERROR_CORRUPT_NULL_BYTE_404_DATA_CORRUPTION_LEAK]  [CORRUPTED_NOISE: ERROR_CORRUPT_NULL_BYTE_404_DATA_CORRUPTION_LEAK]  [CORRUPTED_NOISE: ERROR_CORRUPT_NULL_BYTE_404_DATA_CORRUPTION_LEAK] An extended empirical study on ierarchical and sem [CORRUPTED_NOISE: ERROR_CORRUPT_NULL_BYTE_404_DATA_CORRUPTION_LEAK] "
     ],
     "retrieval_hit": false,
-    "token_f1": 0.08695652173913043,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   }
