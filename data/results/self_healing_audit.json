@@ -1,0 +1,15 @@
+{
+  "incident_id": "INC-20260926-102951",
+  "detected_at": "2026-09-26T10:29:51.421905+00:00",
+  "severity": "CRITICAL",
+  "violations": [
+    "Data Quality Gate (GX 1.x) vi ph\u1ea1m: ph\u00e1t hi\u1ec7n b\u1ea3n ghi r\u1ed7ng/tr\u00f9ng l\u1eb7p",
+    "Freshness SLA vi ph\u1ea1m: t\u1ef7 l\u1ec7 b\u00e0i b\u00e1o c\u0169 \u0111\u1ea1t 0.0% (v\u01b0\u1ee3t ng\u01b0\u1ee1ng 25%)"
+  ],
+  "quarantined_path": "D:\\LabVin_Day10\\K4-L3B-DAY10-Moi-DataPipelineDataObservability\\data\\quality\\quarantined_data.json",
+  "healing_strategy": "Snapshot-based Idempotent Re-ingestion & Vector Store Re-sync",
+  "healed_at": "2026-09-26T10:29:58.047993+00:00",
+  "healing_status": "RESOLVED_AUTOMATICALLY",
+  "revalidated_quality_pass": true,
+  "revalidated_freshness_pass": true
+}

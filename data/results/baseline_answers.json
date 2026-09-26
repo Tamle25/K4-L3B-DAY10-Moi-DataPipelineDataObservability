@@ -94,7 +94,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671814"
     ],
-    "answer": "An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Anh Tran, Quoc Pham",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671814",
       "10.1145/3637528.3671802",
@@ -108,10 +108,10 @@
       "Title: Advanced Perspectives on Freshness SLAs for Real-Time LLM Knowledge Augmentation\nAuthors: Bao Do, Linh Ngo\nPublished: 2026-06-04\nCategories: Data Management, Artificial Intelligence\nSummary: An extended empirical study on e define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora Further analysis on scaling parameters."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
@@ -123,7 +123,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671820"
     ],
-    "answer": "An extended empirical study on single LLM is susceptible to confirmation bias when evaluating retrieved evidence.",
+    "answer": "Phong Vu, Ngan Hoang",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671820",
       "10.1145/3637528.3671808",
@@ -137,10 +137,10 @@
       "Title: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-05-20\nCategories: Artificial Intelligence, Information Retrieval\nSummary: Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
@@ -152,7 +152,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671806"
     ],
-    "answer": "Connecting LLMs directly to raw warehouse tables often results in schema misunderstandings.",
+    "answer": "Huy Dinh, Trang Vo",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671806",
       "10.1145/3637528.3671818",
@@ -166,10 +166,10 @@
       "Title: Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\nAuthors: Minh Nguyen, Hoang Le\nPublished: 2026-05-20\nCategories: Artificial Intelligence, Information Retrieval\nSummary: Retrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. We explore agentic multi-hop reasoning and routing across heterogeneous vector indices."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.0,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
@@ -239,7 +239,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671814"
     ],
-    "answer": "An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Software Engineering, Data Systems",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671814",
       "10.1145/3637528.3671802",
@@ -253,10 +253,10 @@
       "Title: Advanced Perspectives on Freshness SLAs for Real-Time LLM Knowledge Augmentation\nAuthors: Bao Do, Linh Ngo\nPublished: 2026-06-04\nCategories: Data Management, Artificial Intelligence\nSummary: An extended empirical study on e define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora Further analysis on scaling parameters."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.08695652173913043,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
@@ -268,7 +268,7 @@
     "ground_truth_doc_ids": [
       "10.1145/3637528.3671802"
     ],
-    "answer": "Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+    "answer": "Software Engineering, Data Systems",
     "retrieved_doc_ids": [
       "10.1145/3637528.3671802",
       "10.1145/3637528.3671814",
@@ -282,10 +282,10 @@
       "Title: Advanced Perspectives on Freshness SLAs for Real-Time LLM Knowledge Augmentation\nAuthors: Bao Do, Linh Ngo\nPublished: 2026-06-04\nCategories: Data Management, Artificial Intelligence\nSummary: An extended empirical study on e define freshness service-level agreements (SLAs) for temporal document ingestion. By tracking document age and update cadence, our orchestrator dynamically prioritizes recrawling high-churn technical corpora Further analysis on scaling parameters."
     ],
     "retrieval_hit": true,
-    "token_f1": 0.11111111111111112,
+    "token_f1": 1.0,
     "judge": {
-      "score": 1,
-      "correct": false,
+      "score": 5,
+      "correct": true,
       "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   }

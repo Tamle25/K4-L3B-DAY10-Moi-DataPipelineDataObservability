@@ -71,9 +71,9 @@ def _print_comparison_table(
 
     table = f"""
 ========================================================================================
-           BẢNG ĐỐI CHIẾU HIỆU NĂNG 3 TRẠNG THÁI: BASELINE vs CORRUPTED vs REPAIRED
+           BANG DOI CHIEU HIEU NANG 3 TRANG THAI: BASELINE vs CORRUPTED vs REPAIRED
 ========================================================================================
-| Metric                     | Baseline (Gốc)  | Corrupted (Bị lỗi) | Repaired (Phục hồi) |
+| Metric                     | Baseline (Goc)  | Corrupted (Bi loi) | Repaired (Phuc hoi) |
 +----------------------------+-----------------+--------------------+---------------------+
 | Retrieval Hit Rate         | {b_hit:<15} | {c_hit:<18} | {r_hit:<19} |
 | Mean Token F1              | {b_f1:<15} | {c_f1:<18} | {r_f1:<19} |
@@ -86,34 +86,34 @@ def _print_comparison_table(
 
 
 def run_corruption_flow_pipeline(settings: Settings | None = None) -> None:
-    """Xâu chuỗi toàn tuyến Phase 2:
-    1. Load baseline & tiêm lỗi dữ liệu thực nghiệm (Synthetic Data Corruption).
-    2. Nạp dữ liệu bẩn vào ChromaDB và đo lường sự suy giảm hiệu năng (Silent Failure).
-    3. Kiểm tra chốt chất lượng Data Observability (GX 1.x & Freshness SLA).
-    4. Kích hoạt cơ chế phục hồi an toàn repair_from_raw_snapshot().
-    5. Đánh giá hệ thống sau phục hồi và kết xuất bảng so sánh 3 trạng thái.
+    """Xau chuoi toan tuyen Phase 2:
+    1. Load baseline & tiem loi du lieu thuc nghiem (Synthetic Data Corruption).
+    2. Nap du lieu ban vao ChromaDB va do luong su suy giam hieu nang (Silent Failure).
+    3. Kiem tra chot chat luong Data Observability (GX 1.x & Freshness SLA).
+    4. Kich hoat co che phuc hoi an toan repair_from_raw_snapshot().
+    5. Danh gia he thong sau phuc hoi va ket xuat bang so sanh 3 trang thai.
     """
     if settings is None:
         settings = load_settings()
 
-    # 1. Load baseline metrics và clean dataset.
+    # 1. Load baseline metrics va clean dataset.
     if not settings.paths.baseline_metrics.exists() or not settings.paths.clean_json.exists():
         raise RuntimeError(
-            "Không tìm thấy baseline artifacts. Hãy chạy `python script/run_phase1.py` trước."
+            "Khong tim thay baseline artifacts. Hay chay `python script/run_phase1.py` truoc."
         )
     baseline_metrics = read_json(settings.paths.baseline_metrics)
     baseline_df = pd.read_json(settings.paths.clean_json)
-    print(f"[CorruptionFlow] Đã load baseline: {len(baseline_df)} dòng.")
+    print(f"[CorruptionFlow] Da load baseline: {len(baseline_df)} dong.")
 
-    # 2. Tạo corrupted dataframe và lưu artifacts.
+    # 2. Tao corrupted dataframe va luu artifacts.
     corrupted_df = corrupt_clean_dataframe(baseline_df.copy(), settings.paths.corruption_log)
     write_csv(corrupted_df, settings.paths.corrupted_clean_csv)
     corrupted_df.to_json(
         settings.paths.corrupted_clean_json, orient="records", indent=2, force_ascii=False
     )
-    print(f"[CorruptionFlow] Đã lưu corrupted dataset: {len(corrupted_df)} dòng.")
+    print(f"[CorruptionFlow] Da luu corrupted dataset: {len(corrupted_df)} dong.")
 
-    # 3. Rebuild index và evaluate trên dữ liệu bị lỗi (quan sát Silent Failure).
+    # 3. Rebuild index va evaluate tren du lieu bi loi (quan sat Silent Failure).
     corrupted_index = LocalEmbeddingIndex.build(
         corrupted_df, settings, embeddings_output_path=settings.paths.corrupted_embeddings_json
     )
@@ -130,16 +130,16 @@ def run_corruption_flow_pipeline(settings: Settings | None = None) -> None:
         f"token_f1={corrupted_bundle.summary['mean_token_f1']:.2f}"
     )
 
-    # 4. Quality checks / freshness trên corrupted data.
+    # 4. Quality checks / freshness tren corrupted data.
     corrupted_quality = run_data_quality_checks(corrupted_df, settings, report_name="corrupted")
     corrupted_freshness = build_freshness_report(
         corrupted_df, settings, settings.paths.freshness_report
     )
     print(f"[CorruptionFlow] Corrupted quality status = {corrupted_quality.get('success')}")
 
-    # 5. Repair lại từ raw records (idempotent).
+    # 5. Repair lai tu raw records (idempotent).
     repaired_df = repair_from_raw_snapshot(settings)
-    print(f"[CorruptionFlow] Đã phục hồi dataset: {len(repaired_df)} dòng.")
+    print(f"[CorruptionFlow] Da phuc hoi dataset: {len(repaired_df)} dong.")
 
     # 6. Evaluate repaired dataset.
     repaired_index = LocalEmbeddingIndex.build(
@@ -162,7 +162,7 @@ def run_corruption_flow_pipeline(settings: Settings | None = None) -> None:
         f"token_f1={repaired_bundle.summary['mean_token_f1']:.2f}"
     )
 
-    # 7. Tạo comparison report (Baseline vs Corrupted vs Repaired).
+    # 7. Tao comparison report (Baseline vs Corrupted vs Repaired).
     generate_corruption_report(
         settings.paths.comparison_report,
         baseline_metrics=baseline_metrics,
@@ -173,7 +173,7 @@ def run_corruption_flow_pipeline(settings: Settings | None = None) -> None:
         corrupted_freshness=corrupted_freshness,
         repaired_freshness=repaired_freshness,
     )
-    print(f"[CorruptionFlow] Đã ghi comparison report tại {settings.paths.comparison_report}")
+    print(f"[CorruptionFlow] Da ghi comparison report tai {settings.paths.comparison_report}")
 
     # 8. In bảng so sánh trực quan ra console
     _print_comparison_table(

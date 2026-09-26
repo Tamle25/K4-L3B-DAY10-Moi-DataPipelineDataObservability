@@ -20,13 +20,41 @@ class AnswerResult:
 def _extract_answer(question: str, top_result: SearchResult) -> str:
     lowered = question.lower()
     metadata = top_result.metadata
-    if "who authored" in lowered or "list the authors" in lowered:
-        return metadata["authors_joined"]
-    if "when was" in lowered or "publication date" in lowered or "published on" in lowered:
-        return metadata["published"]
-    if "what categories" in lowered:
-        return metadata["categories_joined"]
-    return first_sentence(metadata["summary"])
+    if "author" in lowered:
+        return metadata.get("authors_joined", "")
+    if "when was" in lowered or "publication date" in lowered or "published" in lowered or "date" in lowered:
+        return metadata.get("published", "")
+    if "categor" in lowered:
+        return metadata.get("categories_joined", "")
+    return first_sentence(metadata.get("summary", ""))
+
+
+def _generate_answer_with_llm(question: str, top_result: SearchResult, settings: Settings) -> str:
+    try:
+        from retrieval.llm import build_llm
+
+        prompt = f"""You are a precise academic QA system. Based ONLY on the following paper context, answer the question concisely and directly.
+
+Context:
+{top_result.content}
+
+Question: {question}
+
+Instructions:
+- If asking about authors, return the exact author names separated by comma.
+- If asking about publication date, return only the date in YYYY-MM-DD format.
+- If asking about categories, return the categories.
+- If asking about summary, return the first key sentence of the summary.
+- Do NOT add conversational filler or explanations. Answer directly.
+""".strip()
+        llm = build_llm(settings=settings, temperature=0.0)
+        res = llm.invoke(prompt)
+        content = res.content.strip() if hasattr(res, "content") else str(res).strip()
+        # Clean any markdown quotation formatting if present
+        content = re.sub(r"^[\"']|[\"']$", "", content).strip()
+        return content or _extract_answer(question, top_result)
+    except Exception:
+        return _extract_answer(question, top_result)
 
 
 def answer_question(question: str, settings: Settings, index: LocalEmbeddingIndex, top_k: int | None = None) -> AnswerResult:

@@ -61,7 +61,7 @@
   - Xuất báo cáo Markdown tổng hợp `phase1_report.md`.
 - **Triển khai Luồng Đối chiếu & Phục hồi (`corruption_flow.py`)**:
   - Nạp dữ liệu bị tiêm lỗi vào collection `papers-corrupted` trong ChromaDB.
-  - Đánh giá trên cùng tập test để quan sát hiện tượng **Silent Failure** (`Hit Rate` giảm từ 100% xuống 80%, `Token F1` giảm từ 0.520 xuống 0.417).
+  - Đánh giá trên cùng tập test để quan sát hiện tượng **Silent Failure** (`Hit Rate` giảm từ 100% xuống 80%, `Token F1` giảm từ 1.000 xuống 0.900).
   - Kích hoạt hàm `repair_from_raw_snapshot()`: đọc lại snapshot thô từ `crossref_records.json`, làm sạch lại từ đầu và lưu vào `papers_clean_repaired.*`.
   - Đánh chỉ mục dữ liệu phục hồi vào collection `papers-repaired`, tái đánh giá và xác nhận chỉ số quay về mức ban đầu.
   - In bảng so sánh trực tiếp ra console và xuất báo cáo `corruption_report.md`.
@@ -124,7 +124,7 @@ python script/run_corruption_flow.py
 4. **Tại sao phải dùng chung test set:**  
    Để bảo đảm tính khách quan trong phương pháp nghiên cứu thực nghiệm. Khi giữ nguyên test set, mọi sự suy giảm hay phục hồi của chỉ số đều xuất phát từ chất lượng của dữ liệu được lập chỉ mục.
 5. **Dấu hiệu chứng minh phục hồi thành công:**  
-   Các chỉ số hiệu năng (Hit Rate 100%, Token F1 0.520) và trạng thái kiểm định (Quality Gate = True, Freshness = True) tại trạng thái Repaired khớp hoàn toàn với trạng thái Baseline ban đầu.
+   Các chỉ số hiệu năng (Hit Rate 100%, Token F1 1.000) và trạng thái kiểm định (Quality Gate = True, Freshness = True) tại trạng thái Repaired khớp hoàn toàn với trạng thái Baseline ban đầu.
 
 ---
 
@@ -135,9 +135,9 @@ python script/run_corruption_flow.py
 | Metric/signal | Baseline | Corrupted | Repaired | Nhận xét cá nhân |
 | --- | ---: | ---: | ---: | --- |
 | `retrieval_hit_rate` | 100.0% | 80.0% | 100.0% | Giảm 20% ở corrupted do mất bài, phục hồi 100% sau repair |
-| `mean_token_f1` | 0.520 | 0.417 | 0.520 | Sụt giảm mạnh do nhiễu văn bản và tóm tắt rỗng |
-| `judge_accuracy` | 50.0% | 40.0% | 50.0% | Độ chính xác câu trả lời suy giảm tương ứng |
-| `mean_judge_score` | 3.000 | 2.600 | 3.000 | Phản ánh mức độ tin cậy của phản hồi AI |
+| `mean_token_f1` | 1.000 | 0.900 | 1.000 | Sụt giảm do nhiễu văn bản và tóm tắt rỗng |
+| `judge_accuracy` | 100.0% | 90.0% | 100.0% | Độ chính xác câu trả lời suy giảm tương ứng |
+| `mean_judge_score` | 5.000 | 4.600 | 5.000 | Phản ánh mức độ tin cậy của phản hồi AI |
 | Quality checks (GX 1.x) | `True` | `False` | `True` | Chốt chặn Great Expectations phát hiện vi phạm |
 | Freshness status | `True` | `False` | `True` | Kích hoạt cảnh báo vi phạm SLA khi 47.6% bài bị cũ |
 
