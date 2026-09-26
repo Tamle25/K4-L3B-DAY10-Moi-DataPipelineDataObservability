@@ -110,10 +110,12 @@ def evaluate_pipeline(
     test_set = read_json(test_set_path)
     answers: list[dict[str, Any]] = []
 
-    for item in test_set:
+    for idx_item, item in enumerate(test_set, 1):
         result = answer_question(item["question"], settings=settings, index=index)
         judge = _judge_answer(settings, item["question"], item["ground_truth"], result.answer)
         retrieval_hit = any(doc_id in item["ground_truth_doc_ids"] for doc_id in result.retrieved_doc_ids)
+        token_f1 = _token_f1(item["ground_truth"], result.answer)
+        print(f"  [Eval {idx_item}/{len(test_set)}] {item['id']} ({item['question_type']}): F1={token_f1:.2f} | Judge={judge.score}/5", flush=True)
         answers.append(
             {
                 "id": item["id"],
@@ -125,7 +127,7 @@ def evaluate_pipeline(
                 "retrieved_doc_ids": result.retrieved_doc_ids,
                 "retrieved_contexts": result.retrieved_contexts,
                 "retrieval_hit": retrieval_hit,
-                "token_f1": _token_f1(item["ground_truth"], result.answer),
+                "token_f1": token_f1,
                 "judge": judge.model_dump(),
             }
         )
