@@ -142,9 +142,9 @@ python -c "from core.config import load_settings; from evaluation.testset import
 | Metric/signal | Baseline | Corrupted | Repaired | Nhận xét cá nhân |
 | --- | ---: | ---: | ---: | --- |
 | `retrieval_hit_rate` | 100.0% | 80.0% | 100.0% | Bị sụt giảm 20% do tập dữ liệu mất các bài báo mới nhất |
-| `mean_token_f1` | 0.520 | 0.417 | 0.520 | Độ chính xác token giảm mạnh do summary bị hỏng và dính nhiễu |
-| `judge_accuracy` | 50.0% | 40.0% | 50.0% | AI trả lời sai do ngữ cảnh retrieved bị sai lệch |
-| `mean_judge_score` | 3.000 | 2.600 | 3.000 | Điểm số chất lượng câu trả lời bị giảm |
+| `mean_token_f1` | 1.000 | 0.900 | 1.000 | Độ chính xác token giảm do summary bị hỏng và dính nhiễu |
+| `judge_accuracy` | 100.0% | 90.0% | 100.0% | AI trả lời sai do ngữ cảnh retrieved bị sai lệch |
+| `mean_judge_score` | 5.000 | 4.600 | 5.000 | Điểm số chất lượng câu trả lời bị giảm |
 | Quality checks (GX 1.x) | `True` | `False` | `True` | Bắt lỗi chính xác ngay khi có bản ghi rỗng hoặc trùng |
 | Freshness status | `True` | `False` | `True` | Đạt SLA ở baseline, cảnh báo đỏ ở corrupted (47.6% bài cũ) |
 
