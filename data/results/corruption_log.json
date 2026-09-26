@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-09-26T04:16:38.709263+00:00",
+  "original_rows": 24,
+  "corrupted_rows": 21,
+  "corruption_counts": {
+    "drop_latest_records": 5,
+    "blank_summary": 2,
+    "inject_noise": 2,
+    "truncate_title": 2,
+    "stale_date": 7,
+    "duplicate_rows": 2
+  },
+  "details": [
+    {
+      "type": "drop_latest_records",
+      "paper_id": "10.1145/3637528.3671812",
+      "description": "Dropped latest record 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines' (published: 2026-07-22)"
+    },
+    {
+      "type": "drop_latest_records",
+      "paper_id": "10.1145/3637528.3671808",
+      "description": "Dropped latest record 'Multi-Agent Consensus for High-Stakes Fact Verification' (published: 2026-07-19)"
+    },
+    {
+      "type": "drop_latest_records",
+      "paper_id": "10.1145/3637528.3671804",
+      "description": "Dropped latest record 'Freshness SLAs for Real-Time LLM Knowledge Augmentation' (published: 2026-07-05)"
+    },
+    {
+      "type": "drop_latest_records",
+      "paper_id": "10.1145/3637528.3671807",
+      "description": "Dropped latest record 'Synthetic Corruption Testing: Stress-Testing Vector Search Robustness' (published: 2026-06-25)"
+    },
+    {
+      "type": "drop_latest_records",
+      "paper_id": "10.1145/3637528.3671802",
+      "description": "Dropped latest record 'Data Observability and Quality Gates for Production RAG Systems' (published: 2026-06-12)"
+    },
+    {
+      "type": "blank_summary",
+      "paper_id": "10.1145/3637528.3671824",
+      "description": "Blanked summary of paper '10.1145/3637528.3671824' (was 262 chars)"
+    },
+    {
+      "type": "blank_summary",
+      "paper_id": "10.1145/3637528.3671823",
+      "description": "Blanked summary of paper '10.1145/3637528.3671823' (was 268 chars)"
+    },
+    {
+      "type": "inject_noise",
+      "paper_id": "10.1145/3637528.3671822",
+      "description": "Injected synthetic noise into summary of paper '10.1145/3637528.3671822'"
+    },
+    {
+      "type": "inject_noise",
+      "paper_id": "10.1145/3637528.3671821",
+      "description": "Injected synthetic noise into summary of paper '10.1145/3637528.3671821'"
+    },
+    {
+      "type": "truncate_title",
+      "paper_id": "10.1145/3637528.3671810",
+      "description": "Truncated title of paper '10.1145/3637528.3671810' from 'Automated Data Quality Profiling with Great Expectations in CI/CD' to 'Autom'"
+    },
+    {
+      "type": "truncate_title",
+      "paper_id": "10.1145/3637528.3671820",
+      "description": "Truncated title of paper '10.1145/3637528.3671820' from 'Advanced Perspectives on Multi-Agent Consensus for High-Stakes Fact Verification' to 'Advan'"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671824",
+      "description": "Shifted published date for '10.1145/3637528.3671824' from 2026-06-12 to 2025-06-12 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671823",
+      "description": "Shifted published date for '10.1145/3637528.3671823' from 2026-06-11 to 2025-06-11 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671822",
+      "description": "Shifted published date for '10.1145/3637528.3671822' from 2026-06-10 to 2025-06-10 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671821",
+      "description": "Shifted published date for '10.1145/3637528.3671821' from 2026-06-09 to 2025-06-09 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671810",
+      "description": "Shifted published date for '10.1145/3637528.3671810' from 2026-06-08 to 2025-06-08 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671820",
+      "description": "Shifted published date for '10.1145/3637528.3671820' from 2026-06-08 to 2025-06-08 (-365 days)"
+    },
+    {
+      "type": "stale_date",
+      "paper_id": "10.1145/3637528.3671819",
+      "description": "Shifted published date for '10.1145/3637528.3671819' from 2026-06-07 to 2025-06-07 (-365 days)"
+    },
+    {
+      "type": "duplicate_rows",
+      "paper_id": "10.1145/3637528.3671824",
+      "description": "Duplicated row with paper_id '10.1145/3637528.3671824'"
+    },
+    {
+      "type": "duplicate_rows",
+      "paper_id": "10.1145/3637528.3671823",
+      "description": "Duplicated row with paper_id '10.1145/3637528.3671823'"
+    }
+  ]
+}
